@@ -1,20 +1,31 @@
-name: Auto Deploy on Push
+name: Auto Deploy
 
+# Trigger on every push to main branch
 on:
   push:
-    branches: [ "main" ]  # or your branch
+    branches: [ "main" ]
 
 jobs:
   deploy:
+    # Use your self-hosted EC2 runner
     runs-on: self-hosted
 
     steps:
+    # Checkout latest code
     - uses: actions/checkout@v4
-    - name: Install Node.js
+
+    # Install Node.js
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 18.x
+        node-version: 22.x
         cache: 'npm'
+
+    # Install dependencies
     - run: npm ci
+
+    # Build the project (if applicable)
     - run: npm run build --if-present
-    - run: pm2 restart app || echo "pm2 app not running"
+
+    # Restart your app using pm2
+    - run: pm2 restart app || pm2 start app
