@@ -5,7 +5,7 @@ const PORT  = 5000;
 
 app.get("/home",(req,res)=>{
     res.json({
-        message:"My first ci-cd pipeline..."
+        message:"My first ci-cd pipeline... yeah i created proper"
     })
 })
 
