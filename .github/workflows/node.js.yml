@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     # Use your self-hosted EC2 runner
-    runs-on: [self-hosted, Linux, X64, my-label]
+    runs-on: [self-hosted, Linux, X64]
 
     steps:
     # Checkout latest code
@@ -18,7 +18,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 22.x
+        node-version: 20.x
         cache: 'npm'
 
     # Install dependencies
