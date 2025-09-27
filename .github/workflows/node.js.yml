@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     # Use your self-hosted EC2 runner
-    runs-on: self-hosted
+runs-on: [self-hosted, Linux, X64, my-label]
 
     steps:
     # Checkout latest code
